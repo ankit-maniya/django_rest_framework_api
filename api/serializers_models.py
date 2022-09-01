@@ -12,6 +12,6 @@ class StudentModelSerializers(serializers.ModelSerializer):
         extra_kwargs = {'id': {'read_only': True}}
 
     def validate_roll(self, value):
-        if value > 11:
+        if value < 11:
             raise serializers.ValidationError(f'This {value} Number is Not Allowed!')
         return value
