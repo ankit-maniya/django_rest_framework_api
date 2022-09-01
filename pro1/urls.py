@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from api import views
+from api import views, views_drf
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +26,6 @@ urlpatterns = [
     path('student_insert/', views.student_insert),
     path('student_update/', views.student_update),
     path('student_delete/', views.student_delete),
+    path('hello_word/<int:pk>', views_drf.hello_word),
+    path('hello_word/', views_drf.hello_word),
 ]
