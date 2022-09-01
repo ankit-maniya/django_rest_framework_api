@@ -1,6 +1,4 @@
-from functools import partial
 import io
-import re
 
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -8,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 
+from .models_serializers import StudentModelSerializers
 from .serializers import StudentSerializers
 from .models import Student
 
@@ -16,7 +15,7 @@ from .models import Student
 
 def student_details(request, pk):
     stu = Student.objects.get(id=pk)
-    serializer = StudentSerializers(stu)
+    serializer = StudentModelSerializers(stu)
     # json_data = JSONRenderer().render(serializer.data)
     # return HttpResponse(json_data, content_type='application/json')
     return JsonResponse(serializer.data)
@@ -26,7 +25,7 @@ def student_details(request, pk):
 
 def student_list(request):
     stu = Student.objects.all()
-    serializer = StudentSerializers(stu, many=True)
+    serializer = StudentModelSerializers(stu, many=True)
     return JsonResponse(serializer.data, safe=False)
 
 
@@ -42,7 +41,8 @@ def student_create(request):
         json_data = request.body
 
         python_data = return_python_data(json_data)
-        serializer = StudentSerializers(data=python_data)
+        serializer = StudentModelSerializers(data=python_data)
+        # serializer = StudentSerializers(data=python_data)
 
         if serializer.is_valid():
             serializer.save()
@@ -72,7 +72,8 @@ def student_insert(request):
     if request.method == 'POST':
         json_data = request.body
         python_data = return_python_data(json_data)
-        serializer = StudentSerializers(data=python_data)
+        # serializer = StudentSerializers(data=python_data)
+        serializer = StudentModelSerializers(data=python_data)
 
         if serializer.is_valid():
             serializer.save()
@@ -91,7 +92,9 @@ def student_update(request):
         id = python_data.get('id', None)
         if id is not None:
             stu = Student.objects.get(id=id)
-            serializer = StudentSerializers(
+            # serializer = StudentSerializers(
+            #     stu, data=python_data, partial=True)
+            serializer = StudentModelSerializers(
                 stu, data=python_data, partial=True)
 
             if serializer.is_valid():
@@ -110,7 +113,7 @@ def student_delete(request):
         id = python_data.get('id', None)
         if id is not None:
             stu = Student.objects.get(id=id)
-            stu.delete();
+            stu.delete()
 
-            return JsonResponse({ "message": "Student Deleted Successfully!" })
+            return JsonResponse({"message": "Student Deleted Successfully!"})
     return JsonResponse({"message": "Student is not Deleted!"})
