@@ -6,8 +6,14 @@ from .serializers_models import StudentModelSerializers
 from .permission_custome import MyPermission
 
 from rest_framework import viewsets
-from rest_framework.authentication import BasicAuthentication, SessionAuthentication, TokenAuthentication
-from rest_framework.permissions import IsAuthenticated, IsAdminUser, AllowAny, IsAuthenticatedOrReadOnly, DjangoModelPermissions, DjangoModelPermissionsOrAnonReadOnly
+from rest_framework.authentication import (
+    BasicAuthentication, SessionAuthentication, TokenAuthentication
+)
+from rest_framework.permissions import (
+    IsAuthenticated, IsAdminUser, AllowAny,
+    IsAuthenticatedOrReadOnly, DjangoModelPermissions, DjangoModelPermissionsOrAnonReadOnly
+)
+from rest_framework_simplejwt.authentication import JWTAuthentication
 
 
 class StudentModelViewSet(viewsets.ModelViewSet):
@@ -28,6 +34,8 @@ class StudentModelViewSetCustome(viewsets.ModelViewSet):
     queryset = Student.objects.all()
     serializer_class = StudentModelSerializers
     # Token based CRUD operations
-    authentication_classes = [TokenAuthentication]
+    # authentication_classes = [TokenAuthentication]
+    # JWT authentication
+    authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
     # permission_classes = [MyPermission] # Custome Permission created

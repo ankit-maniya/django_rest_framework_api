@@ -17,8 +17,18 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework.authtoken.views import obtain_auth_token
-from api import views, views_drf, views_genericApi_mixin, views_genericApi_concrete, views_viewsets, auth
-
+from api import (
+    views, views_drf,
+    views_genericApi_mixin,
+    views_genericApi_concrete,
+    views_viewsets,
+    auth
+)
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+    TokenVerifyView
+)
 # Creating Router Object
 router = DefaultRouter()
 
@@ -55,7 +65,9 @@ urlpatterns = [
     # path('studentapi/<int:pk>', views_genericApi_concrete.StudentUpdate.as_view()),
     path('', include(router.urls)),
     path('auth/', include('rest_framework.urls', namespace="Rest_Framework")),
-    path('api-token-auth/', obtain_auth_token),
-    path('generate_token/', auth.CustomAuthToken.as_view()),
-
+    # path('api-token-auth/', obtain_auth_token),
+    # path('generate_token/', auth.CustomAuthToken.as_view()),
+    path('gettoken/', TokenObtainPairView.as_view()),
+    path('refreshtoken/', TokenRefreshView.as_view()),
+    path('verifytoken/', TokenVerifyView.as_view())
 ]
