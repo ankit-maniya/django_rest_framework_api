@@ -42,6 +42,7 @@ router.register(
 )
 
 urlpatterns = [
+    path('auth/', include('rest_framework.urls', namespace="Rest_Framework")),
     path('admin/', admin.site.urls),
     path('stuinfo/', views.student_list),
     path('stuinfo/<int:pk>', views.student_details),
@@ -61,10 +62,9 @@ urlpatterns = [
     # path('studentapi/<int:pk>/', views_genericApi_mixin.StudentRetriveUpdateAndDelete.as_view()),
     path('studentapi/', views_genericApi_concrete.StudentList.as_view()),
     # path('studentapi/', views_genericApi_concrete.StudentCreate.as_view()),
-    path('studentapi/<int:pk>', views_genericApi_concrete.StudentRetrive.as_view()),
+    # path('studentapi/<int:pk>', views_genericApi_concrete.StudentRetrive.as_view()),
     # path('studentapi/<int:pk>', views_genericApi_concrete.StudentUpdate.as_view()),
     path('', include(router.urls)),
-    path('auth/', include('rest_framework.urls', namespace="Rest_Framework")),
     # path('api-token-auth/', obtain_auth_token),
     # path('generate_token/', auth.CustomAuthToken.as_view()),
     path('gettoken/', TokenObtainPairView.as_view()),

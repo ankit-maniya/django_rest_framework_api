@@ -7,7 +7,7 @@ class StudentModelSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = Student
-        fields = ['id', 'name', 'roll', 'city']
+        fields = ['id', 'name', 'roll', 'city', 'passby']
         # read_only_fields = ['id']
         extra_kwargs = {'id': {'read_only': True}}
 

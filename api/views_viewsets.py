@@ -17,6 +17,7 @@ from rest_framework.permissions import (
 )
 from rest_framework.throttling import UserRateThrottle, AnonRateThrottle
 from rest_framework_simplejwt.authentication import JWTAuthentication
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 class StudentModelViewSet(viewsets.ModelViewSet):
@@ -45,3 +46,8 @@ class StudentModelViewSetCustome(viewsets.ModelViewSet):
     authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticatedOrReadOnly]
     # permission_classes = [MyPermission] # Custome Permission created
+    # def get_queryset(self):
+    #     user = self.request.user
+    #     return Student.objects.filter(passby=user)
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['city', 'name']

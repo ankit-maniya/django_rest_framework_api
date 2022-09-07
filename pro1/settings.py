@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
+    'django_filters',
     'api'
 ]
 
@@ -138,5 +139,6 @@ REST_FRAMEWORK = {
         'stu_create': '1/min',
         'stu_update': '1/min',
         'stu_retrive': '2/min',
-    }
+    },
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
