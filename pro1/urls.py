@@ -23,7 +23,11 @@ router = DefaultRouter()
 
 # Register StudentViewSet with Router
 router.register(
-    'studentapi', views_viewsets.StudentModelViewSet, basename='Student'
+    'studentapi', views_viewsets.StudentModelViewSet, basename='Student',
+)
+
+router.register(
+    'studentapinew', views_viewsets.StudentModelViewSetCustome, basename='StudentNew'
 )
 
 urlpatterns = [

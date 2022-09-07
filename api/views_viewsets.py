@@ -3,6 +3,7 @@
 
 from .models import Student
 from .serializers_models import StudentModelSerializers
+from .permission_custome import MyPermission
 
 from rest_framework import viewsets
 from rest_framework.authentication import BasicAuthentication, SessionAuthentication
@@ -20,3 +21,9 @@ class StudentModelViewSet(viewsets.ModelViewSet):
     # permission_classes = [IsAuthenticatedOrReadOnly]
     # permission_classes = [DjangoModelPermissions] # we can manage user permission from admin
     permission_classes = [DjangoModelPermissionsOrAnonReadOnly] # we can manage user permission from admin
+
+class StudentModelViewSetCustome(viewsets.ModelViewSet):
+    queryset = Student.objects.all()
+    serializer_class = StudentModelSerializers
+
+    # permission_classes = [MyPermission] # Custome Permission created
