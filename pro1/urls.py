@@ -33,9 +33,9 @@ from rest_framework_simplejwt.views import (
 router = DefaultRouter()
 
 # Register StudentViewSet with Router
-router.register(
-    'studentapi', views_viewsets.StudentModelViewSet, basename='Student',
-)
+# router.register(
+#     'studentapi', views_viewsets.StudentModelViewSet, basename='Student',
+# )
 
 router.register(
     'studentapinew', views_viewsets.StudentModelViewSetCustome, basename='StudentNew'
@@ -59,9 +59,9 @@ urlpatterns = [
     # path('studentapi/<int:pk>/', views_genericApi_mixin.StudentDelete.as_view()),
     # path('studentapi/', views_genericApi_mixin.StudentListAndCreate.as_view()),
     # path('studentapi/<int:pk>/', views_genericApi_mixin.StudentRetriveUpdateAndDelete.as_view()),
-    # path('studentapi/', views_genericApi_concrete.StudentList.as_view()),
+    path('studentapi/', views_genericApi_concrete.StudentList.as_view()),
     # path('studentapi/', views_genericApi_concrete.StudentCreate.as_view()),
-    # path('studentapi/<int:pk>', views_genericApi_concrete.StudentRetrive.as_view()),
+    path('studentapi/<int:pk>', views_genericApi_concrete.StudentRetrive.as_view()),
     # path('studentapi/<int:pk>', views_genericApi_concrete.StudentUpdate.as_view()),
     path('', include(router.urls)),
     path('auth/', include('rest_framework.urls', namespace="Rest_Framework")),

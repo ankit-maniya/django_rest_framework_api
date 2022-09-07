@@ -129,5 +129,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
+    ),
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '10/day',
+        'user': '50/day',
+        'jack': '20/min',
+        'stu_view': '1/min',
+        'stu_create': '1/min',
+        'stu_update': '1/min',
+        'stu_retrive': '2/min',
+    }
 }
