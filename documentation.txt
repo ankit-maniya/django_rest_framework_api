@@ -1,0 +1,2 @@
+Token based Get data
+http GET http://localhost:8000/studentapinew/ 'Authorization:Token 157b09fa20e831a9fe03ae2de13e37c849b4c8c6'

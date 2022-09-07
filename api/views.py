@@ -104,6 +104,7 @@ def student_update(request):
         return JsonResponse({"message": "Please send Id appropriate!"})
     return JsonResponse({"message": "Data not updated!"})
 
+
 @csrf_exempt
 def student_delete(request):
     if request.method == "DELETE":

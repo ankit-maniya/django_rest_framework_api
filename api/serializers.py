@@ -1,10 +1,13 @@
 from rest_framework import serializers
 from .models import Student
 
+
 def start_with_r(value):
     if value[0].lower() == 'r':
-        raise serializers.ValidationError(f'Starting with {value[0]} is not allowed!')
+        raise serializers.ValidationError(
+            f'Starting with {value[0]} is not allowed!')
     return value
+
 
 class StudentSerializers(serializers.Serializer):
     id = serializers.ReadOnlyField()

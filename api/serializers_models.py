@@ -13,5 +13,6 @@ class StudentModelSerializers(serializers.ModelSerializer):
 
     def validate_roll(self, value):
         if value < 11:
-            raise serializers.ValidationError(f'This {value} Number is Not Allowed!')
+            raise serializers.ValidationError(
+                f'This {value} Number is Not Allowed!')
         return value

@@ -14,8 +14,9 @@ class Student(models.Model):
     city = models.CharField(max_length=100)
 
 # This signals create a token when user create
+
+
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
-
