@@ -39,8 +39,8 @@ urlpatterns = [
     path('hello_word/', views_drf.hello_word),
     # path('studentapi/', views_genericApi_mixin.StudentList.as_view()),
     # path('studentapi/', views_genericApi_mixin.StudentCreate.as_view()),
-    # path('studentapi/<int:pk>', views_genericApi_mixin.StudentRetrive.as_view()), // retrive single student
-    # path('studentapi/<int:pk>/', views_genericApi_mixin.StudentUpdate.as_view()), // update single user
+    # path('studentapi/<int:pk>', views_genericApi_mixin.StudentRetrive.as_view()), # retrive single student
+    # path('studentapi/<int:pk>/', views_genericApi_mixin.StudentUpdate.as_view()), # update single user
     # path('studentapi/<int:pk>/', views_genericApi_mixin.StudentDelete.as_view()),
     # path('studentapi/', views_genericApi_mixin.StudentListAndCreate.as_view()),
     # path('studentapi/<int:pk>/', views_genericApi_mixin.StudentRetriveUpdateAndDelete.as_view()),
@@ -48,5 +48,6 @@ urlpatterns = [
     # path('studentapi/', views_genericApi_concrete.StudentCreate.as_view()),
     # path('studentapi/<int:pk>', views_genericApi_concrete.StudentRetrive.as_view()),
     # path('studentapi/<int:pk>', views_genericApi_concrete.StudentUpdate.as_view()),
-    path('', include(router.urls))
+    path('', include(router.urls)),
+    path('auth/', include('rest_framework.urls', namespace="Rest_Framework")),
 ]
