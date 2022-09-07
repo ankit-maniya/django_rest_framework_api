@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from api import views, views_drf, views_genericApi_mixin
+from api import views, views_drf, views_genericApi_mixin, views_genericApi_concrete
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,7 +30,13 @@ urlpatterns = [
     path('hello_word/', views_drf.hello_word),
     # path('studentapi/', views_genericApi_mixin.StudentList.as_view()),
     # path('studentapi/', views_genericApi_mixin.StudentCreate.as_view()),
-    # path('studentapi/<int:pk>', views_genericApi_mixin.StudentRetrive.as_view()), // retrive single student 
+    # path('studentapi/<int:pk>', views_genericApi_mixin.StudentRetrive.as_view()), // retrive single student
     # path('studentapi/<int:pk>/', views_genericApi_mixin.StudentUpdate.as_view()), // update single user
-    path('studentapi/<int:pk>/', views_genericApi_mixin.StudentDelete.as_view()),
+    # path('studentapi/<int:pk>/', views_genericApi_mixin.StudentDelete.as_view()),
+    # path('studentapi/', views_genericApi_mixin.StudentListAndCreate.as_view()),
+    # path('studentapi/<int:pk>/', views_genericApi_mixin.StudentRetriveUpdateAndDelete.as_view()),
+    path('studentapi/', views_genericApi_concrete.StudentList.as_view()),
+    # path('studentapi/', views_genericApi_concrete.StudentCreate.as_view()),
+    # path('studentapi/<int:pk>', views_genericApi_concrete.StudentRetrive.as_view()),
+    path('studentapi/<int:pk>', views_genericApi_concrete.StudentUpdate.as_view()),
 ]
