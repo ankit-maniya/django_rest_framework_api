@@ -16,7 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from api import views, views_drf, views_genericApi_mixin, views_genericApi_concrete, views_viewsets
+from rest_framework.authtoken.views import obtain_auth_token
+from api import views, views_drf, views_genericApi_mixin, views_genericApi_concrete, views_viewsets, auth
 
 # Creating Router Object
 router = DefaultRouter()
@@ -54,4 +55,7 @@ urlpatterns = [
     # path('studentapi/<int:pk>', views_genericApi_concrete.StudentUpdate.as_view()),
     path('', include(router.urls)),
     path('auth/', include('rest_framework.urls', namespace="Rest_Framework")),
+    path('api-token-auth/', obtain_auth_token),
+    path('generate_token/', auth.CustomAuthToken.as_view()),
+
 ]
