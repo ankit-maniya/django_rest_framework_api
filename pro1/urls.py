@@ -14,8 +14,16 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from api import views, views_drf, views_genericApi_mixin, views_genericApi_concrete
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from api import views, views_drf, views_genericApi_mixin, views_genericApi_concrete, views_viewsets
+
+# Creating Router Object
+router = DefaultRouter()
+
+# Register StudentViewSet with Router
+router.register(
+    'studentapi', views_viewsets.StudentModelViewSet, basename='Student')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -35,8 +43,9 @@ urlpatterns = [
     # path('studentapi/<int:pk>/', views_genericApi_mixin.StudentDelete.as_view()),
     # path('studentapi/', views_genericApi_mixin.StudentListAndCreate.as_view()),
     # path('studentapi/<int:pk>/', views_genericApi_mixin.StudentRetriveUpdateAndDelete.as_view()),
-    path('studentapi/', views_genericApi_concrete.StudentList.as_view()),
+    # path('studentapi/', views_genericApi_concrete.StudentList.as_view()),
     # path('studentapi/', views_genericApi_concrete.StudentCreate.as_view()),
     # path('studentapi/<int:pk>', views_genericApi_concrete.StudentRetrive.as_view()),
-    path('studentapi/<int:pk>', views_genericApi_concrete.StudentUpdate.as_view()),
+    # path('studentapi/<int:pk>', views_genericApi_concrete.StudentUpdate.as_view()),
+    path('', include(router.urls))
 ]
