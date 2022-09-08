@@ -1,6 +1,7 @@
 # ViewSet and Model Serializer
 
 
+from .pagination import StudentStandardResultsSetPagination, StudentLimitOffsetPagination, StudentCursorPagination
 from .models import Student
 from .serializers_models import StudentModelSerializers
 from .permission_custome import MyPermission
@@ -55,6 +56,9 @@ class StudentModelViewSetCustome(viewsets.ModelViewSet):
     # filterset_fields = ['city', 'name']
 
     # filter using rest_framework filters
-    filter_backends = [SearchFilter, OrderingFilter]
-    search_fields = ['city', 'name']
-    ordering_fields = ['city', 'name']
+    # filter_backends = [SearchFilter, OrderingFilter]
+    # search_fields = ['city', 'name']
+    # ordering_fields = ['city', 'name']
+    # pagination_class = StudentStandardResultsSetPagination
+    # pagination_class = StudentLimitOffsetPagination
+    pagination_class = StudentCursorPagination
