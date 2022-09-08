@@ -7,6 +7,7 @@ from .permission_custome import MyPermission
 from .throttling import JackRateThrottle
 
 
+from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework import viewsets
 from rest_framework.authentication import (
     BasicAuthentication, SessionAuthentication, TokenAuthentication
@@ -49,5 +50,11 @@ class StudentModelViewSetCustome(viewsets.ModelViewSet):
     # def get_queryset(self):
     #     user = self.request.user
     #     return Student.objects.filter(passby=user)
-    filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['city', 'name']
+
+    # filter_backends = [DjangoFilterBackend]
+    # filterset_fields = ['city', 'name']
+
+    # filter using rest_framework filters
+    filter_backends = [SearchFilter, OrderingFilter]
+    search_fields = ['city', 'name']
+    ordering_fields = ['city', 'name']
