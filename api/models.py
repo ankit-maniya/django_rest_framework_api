@@ -21,3 +21,19 @@ class Student(models.Model):
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+
+
+class Singer(models.Model):
+    name = models.CharField(max_length=100)
+    gender = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+class Song(models.Model):
+    title = models.CharField(max_length=100)
+    singer = models.ForeignKey(Singer, related_name='songs', on_delete=models.CASCADE)
+    duration = models.IntegerField()
+
+    def __str__(self):
+        return self.title

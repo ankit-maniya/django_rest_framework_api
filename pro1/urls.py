@@ -22,6 +22,7 @@ from api import (
     views_genericApi_mixin,
     views_genericApi_concrete,
     views_viewsets,
+    view_singer,
     auth
 )
 from rest_framework_simplejwt.views import (
@@ -39,6 +40,13 @@ router = DefaultRouter()
 
 router.register(
     'studentapinew', views_viewsets.StudentModelViewSetCustome, basename='StudentNew'
+)
+
+router.register(
+    'singer', view_singer.SingerViewSet, basename='singer'
+)
+router.register(
+    'song', view_singer.SongViewSet, basename='song'
 )
 
 urlpatterns = [
